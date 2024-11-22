@@ -5,3 +5,11 @@
 .items {
     aspect-ratio: 1/1;
 }
+.hide > i {
+    display: none !important; 
+
+}
+.disabled{
+    pointer-events: none;
+
+}
