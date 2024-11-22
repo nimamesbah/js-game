@@ -1,8 +1,28 @@
 const items = document.querySelectorAll(".items");
+const score = document.querySelector(".absolute")
+
 let arr = []
 let arrCorrect=[]
+let count =0
 
 console.log(arr)
+function shuffle(){
+    
+    let arrShuffle=[]
+    let arrTest=[]
+    
+
+    
+   for(let i =0; i<16;i++){
+    arrShuffle.push(Math.floor(Math.random()*16))
+   
+   arrTest.push(items[arrShuffle[i]])
+//     items.slice
+//    items.push(arrTest[i]);
+   }
+
+}
+shuffle()
 function itemClick(evt){
     console.log(evt);
     // debugger
@@ -21,6 +41,7 @@ function itemClick(evt){
             arrCorrect.push(arr[0],arr[1])
             arr.length=0
         }else {
+            count++
 
             wrongFreeze()
             
@@ -45,8 +66,27 @@ function itemClick(evt){
             
     }
     
-    
-    
+    if(arrCorrect.length===16){
+        alert("you win")
+    }
+     if(count===3){
+        alert("you lose. press F5")
+        for (const item of items) {
+            item.removeEventListener("click",itemClick)
+            
+            
+            
+        }
+        
+        
+     }
+    score.textContent=`your score: ${arrCorrect.length}`
+    if(arrCorrect.length===16){
+        score.textContent=`you win:*16*`
+    }
+    if(count===3){
+        score.textContent=`your final:${arrCorrect.length}`
+    }
 }
 function wrongFreeze(){
     for (const item of items) {
