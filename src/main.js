@@ -1,6 +1,7 @@
-const items = document.querySelectorAll(".items");
+const items = [...document.querySelectorAll(".items")];
 const score = document.querySelector(".top-11");
 const attempt = document.querySelector(".top-20");
+const root = document.getElementById("root");
 
 
 let arr = []
@@ -8,23 +9,18 @@ let arrCorrect=[]
 let count =0
 
 console.log(arr)
-function shuffle(){
-    
-    let arrShuffle=[]
-    let arrTest=[]
-    
-
-    
-   for(let i =0; i<16;i++){
-    arrShuffle.push(Math.floor(Math.random()*16))
-   
-   arrTest.push(items[arrShuffle[i]])
-//     items.slice
-//    items.push(arrTest[i]);
-   }
+for(let i = 0; i < items.length ; i++){
+    const rnd = Math.floor(Math.random() * items.length)
+    const temp = items[rnd]
+    items [rnd] = items[i];
+    items[i] = temp
 
 }
-shuffle()
+root.innerHTML = "" ;
+for (const item of items) {
+    root.appendChild(item)
+    
+}
 function itemClick(evt){
     console.log(evt);
     // debugger
