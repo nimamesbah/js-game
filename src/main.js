@@ -9,20 +9,22 @@ let arrCorrect=[]
 let count =0
 
 console.log(arr)
-for(let i = 0; i < items.length ; i++){
-    const rnd = Math.floor(Math.random() * items.length)
-    const temp = items[rnd]
-    items [rnd] = items[i];
-    items[i] = temp
+// for(let i = 0; i < items.length ; i++){
+//     const rnd = Math.floor(Math.random() * items.length)
+//     const temp = items[rnd]
+//     items [rnd] = items[i];
+//     items[i] = temp
 
-}
-root.innerHTML = "" ;
-for (const item of items) {
-    root.appendChild(item)
+// }
+// root.innerHTML = "" ;
+// for (const item of items) {
+//     root.appendChild(item)
     
-}
+// }
 function itemClick(evt){
     console.log(evt);
+    
+    
     // debugger
     if(arr.length===0){
         evt.target.classList.add("disabled")
@@ -34,12 +36,15 @@ function itemClick(evt){
         arr.push(evt.target);
         if(arr[0].innerHTML===arr[1].innerHTML){
             evt.target.classList.remove("hide")
-            evt.target.classList.add("disabled")
+            evt.target.classList.add("disabled","bg-blue-300")
+            arr[0].classList.add("bg-blue-300")
             arr.push(evt.target);
             arrCorrect.push(arr[0],arr[1])
             arr.length=0
         }else {
             count++
+            evt.target.classList.add("rotate-[360deg]")
+            
 
             wrongFreeze()
             
@@ -51,7 +56,7 @@ function itemClick(evt){
                 
                 arr.length=0
 
-                wrongUnFreeze()
+                wrongUnFreeze(evt.target)
                 
                 
                 
@@ -66,12 +71,16 @@ function itemClick(evt){
 
     
     if(arrCorrect.length===16){
-        alert("you win")
+    setTimeout(()=>alert("you win"),50)
+    for (const item of arrCorrect) {
+        item.classList.add("bg-green-300")        
+    }
     }
      if(count===3){
-        alert("you lose. press F5")
+         setTimeout(()=>alert("you lose. press F5"),50)
         for (const item of items) {
             item.removeEventListener("click",itemClick)
+            item.classList.add("bg-red-500")
             
             
             
@@ -89,12 +98,15 @@ function itemClick(evt){
     }
 }
 function wrongFreeze(){
+    
+    
     for (const item of items) {
         item.classList.add("disabled");
         
     }
 }
-function wrongUnFreeze(){
+function wrongUnFreeze(node){
+    node.classList.remove("rotate-[360deg]")
     for (const item of items) {
         item.classList.remove("disabled");
         for (const inn of arrCorrect) {
