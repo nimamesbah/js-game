@@ -5,6 +5,8 @@ const attempt = document.querySelector("#attempt");
 const root = document.getElementById("root");
 const wins = document.getElementById("totalWin")
 const lose = document.getElementById("totalLose")
+const modal = document.getElementById("modal")
+const modalText =document.getElementById("modalText")
 
 
 let arr = []
@@ -16,18 +18,18 @@ wins.innerHTML= `total wins: ${totalWin}`
 lose.innerHTML= `total loses: ${totalLose}`
 
 console.log(arr)
-// for(let i = 0; i < items.length ; i++){
-//     const rnd = Math.floor(Math.random() * items.length)
-//     const temp = items[rnd]
-//     items [rnd] = items[i];
-//     items[i] = temp
+for(let i = 0; i < items.length ; i++){
+    const rnd = Math.floor(Math.random() * items.length)
+    const temp = items[rnd]
+    items [rnd] = items[i];
+    items[i] = temp
 
-// }
-// root.innerHTML = "" ;
-// for (const item of items) {
-//     root.appendChild(item)
+}
+root.innerHTML = "" ;
+for (const item of items) {
+    root.appendChild(item)
     
-// }
+}
 function itemClick(evt){
     console.log("nigger",evt);
     console.log("nigglet",evt.target.querySelector("i"));
@@ -84,20 +86,34 @@ function itemClick(evt){
 
     
     if(arrCorrect.length===16){
-    setTimeout(()=>alert("you win"),50)
+    // setTimeout(()=>alert("you win"),50)
     totalWin++
     wins.innerHTML= `total wins: ${totalWin}`
     localStorage.setItem("wins",JSON.stringify(totalWin))
+    modal.classList.remove("hidden")
+    setTimeout(()=> {
+        modal.classList.add("z-10","blur-sm","bg-slate-100","opacity-30")
+        modalText.classList.add("opacity-100","bg-blue-400")
+        modalText.innerHTML="you win!"
+        
+    },300)
 
     for (const item of arrCorrect) {
         item.style="background-color:rgb(100, 255, 100);"      
     }
     }
      if(count===3){
-         setTimeout(()=>alert("you lose. press F5"),50)
+        //  setTimeout(()=>alert("you lose. press F5"),50)
          totalLose++
          lose.innerHTML= `total loses: ${totalLose}`
          localStorage.setItem("lose",JSON.stringify(totalLose))
+         modal.classList.remove("hidden")
+         setTimeout(()=> {
+            modal.classList.add("z-10","blur-sm","bg-slate-100","opacity-30")
+            modalText.classList.add("opacity-100","bg-red-400")
+            modalText.innerHTML="you lose!"
+            
+        },300)
 
         for (const item of items) {
             item.removeEventListener("click",itemClick)
@@ -117,6 +133,23 @@ function itemClick(evt){
     if(count===3){
         score.textContent=`your final:${arrCorrect.length/2}`
     }
+}
+
+function restart(){
+    location.reload()
+}
+function modalHandle(){
+    modal.classList.add("hidden")
+    modalText.classList.add("hidden")
+}
+function resetStats(){
+    totalLose=0
+    totalWin=0
+    wins.innerHTML= `total wins: ${totalWin}`
+    lose.innerHTML= `total loses: ${totalLose}`
+    localStorage.setItem("wins",JSON.stringify(totalWin))
+    localStorage.setItem("lose",JSON.stringify(totalLose))
+
 }
 function wrongFreeze(){
     

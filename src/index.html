@@ -10,36 +10,43 @@
     <script src="./main.js" defer></script>
 
 </head>
-<body>
-    <div id="stats" class="flex mt-8 flex-col gap-4 rounded-lg py-3 px-4 bg-[#FFC3A0] w-max absolute left-0 top-0 h-96">
+<body class="overflow-hidden" >
+    <div id="modalText" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 duration-700 opacity-0  py-3 px-5 rounded-md z-50 w-max"></div>
+    <div onclick="modalHandle()" id="modal" class="absolute  hidden duration-700 left-0 top-0  w-full h-screen ">
+    </div>
+    <div id="stats" class="flex mt-8 flex-col gap-4 rounded-lg ml-5 py-3 px-4 bg-[#FFC3A0] w-max absolute left-0 top-0 h-96">
         <pre class="text-xl">if you choose incorrect
 3 times you lose</pre>
         <h1 id="score" class=" text-4xl text-red-500">your score:</h1>
         <h1 id="attempt" class=" text-4xl text-blue-500">attempt:</h1>
-        <h3 id="totalWin"></h3>
-        <h3 id="totalLose"></h3>
+        <h3 id="totalWin" class=""></h3>
+        <h3 id="totalLose" class=""></h3>
+        <div class="flex gap-7">
+            <div onclick="restart()" class="rounded-md bg-blue-400 py-2 px-4 cursor-pointer hover:bg-gray-400 ">restart</div>
+            <div onclick="resetStats()" class="rounded-md bg-blue-400 py-2 px-4 cursor-pointer hover:bg-gray-400">reset stats</div>
+        </div>
 
     </div>
     
 
 
     <div id="root" class="grid grid-cols-4 max-w-xl mx-auto mt-8 gap-1">
-        <div class="items rounded-xl duration-150 overflow-hidden  cursor-pointer bg-[#FFC3A0] flex justify-center items-center "><i class="fab fa-twitter "></i></div>
-        <div class="items rounded-xl duration-150 overflow-hidden cursor-pointer  bg-[#FFC3A0] flex justify-center items-center "><i class="fab fa-twitter "></i></div>
-        <div class="items rounded-xl duration-150 overflow-hidden cursor-pointer  bg-[#FFC3A0] flex justify-center items-center "><i class="fab fa-facebook "></i></div>
-        <div class="items rounded-xl duration-150 overflow-hidden cursor-pointer  bg-[#FFC3A0] flex justify-center items-center "><i class="fab fa-facebook "></i></div>
-        <div class="items rounded-xl duration-150 overflow-hidden  cursor-pointer bg-[#FFC3A0] flex justify-center items-center "><i class="fab fa-instagram "></i></div>
-        <div class="items rounded-xl duration-150 overflow-hidden cursor-pointer  bg-[#FFC3A0] flex justify-center items-center "><i class="fab fa-instagram "></i></div>
-        <div class="items rounded-xl duration-150 overflow-hidden cursor-pointer  bg-[#FFC3A0] flex justify-center items-center "><i class="fab fa-telegram "></i></div>
-        <div class="items rounded-xl duration-150 overflow-hidden cursor-pointer  bg-[#FFC3A0] flex justify-center items-center "><i class="fab fa-telegram "></i></div>
-        <div class="items rounded-xl duration-150 overflow-hidden cursor-pointer  bg-[#FFC3A0] flex justify-center items-center "><i class="fab fa-youtube "></i></div>
-        <div class="items rounded-xl duration-150 overflow-hidden cursor-pointer  bg-[#FFC3A0] flex justify-center items-center "><i class="fab fa-youtube "></i></div>
-        <div class="items rounded-xl duration-150 overflow-hidden cursor-pointer  bg-[#FFC3A0] flex justify-center items-center "><i class="fab fa-whatsapp "></i></div>
-        <div class="items rounded-xl duration-150 overflow-hidden cursor-pointer  bg-[#FFC3A0] flex justify-center items-center "><i class="fab fa-whatsapp "></i></div>
-        <div class="items rounded-xl duration-150 overflow-hidden cursor-pointer  bg-[#FFC3A0] flex justify-center items-center "><i class="fab fa-viber "></i></div>
-        <div class="items rounded-xl duration-150 overflow-hidden cursor-pointer  bg-[#FFC3A0] flex justify-center items-center "><i class="fab fa-viber "></i></div>
-        <div class="items rounded-xl duration-150 overflow-hidden cursor-pointer  bg-[#FFC3A0] flex justify-center items-center "><i class="fab fa-discord "></i></div>
-        <div class="items rounded-xl duration-150 overflow-hidden cursor-pointer  bg-[#FFC3A0] flex justify-center items-center "><i class="fab fa-discord "></i></div>
+        <div class="items rounded-xl duration-150 overflow-hidden  cursor-pointer bg-[#FFC3A0] flex justify-center items-center hover:bg-gray-400 "><i class="fab fa-twitter "></i></div>
+        <div class="items rounded-xl duration-150 overflow-hidden cursor-pointer  bg-[#FFC3A0] flex justify-center items-center hover:bg-gray-400 "><i class="fab fa-twitter "></i></div>
+        <div class="items rounded-xl duration-150 overflow-hidden cursor-pointer  bg-[#FFC3A0] flex justify-center items-center hover:bg-gray-400 "><i class="fab fa-facebook "></i></div>
+        <div class="items rounded-xl duration-150 overflow-hidden cursor-pointer  bg-[#FFC3A0] flex justify-center items-center hover:bg-gray-400 "><i class="fab fa-facebook "></i></div>
+        <div class="items rounded-xl duration-150 overflow-hidden  cursor-pointer bg-[#FFC3A0] flex justify-center items-center hover:bg-gray-400 "><i class="fab fa-instagram "></i></div>
+        <div class="items rounded-xl duration-150 overflow-hidden cursor-pointer  bg-[#FFC3A0] flex justify-center items-center hover:bg-gray-400 "><i class="fab fa-instagram "></i></div>
+        <div class="items rounded-xl duration-150 overflow-hidden cursor-pointer  bg-[#FFC3A0] flex justify-center items-center hover:bg-gray-400 "><i class="fab fa-telegram "></i></div>
+        <div class="items rounded-xl duration-150 overflow-hidden cursor-pointer  bg-[#FFC3A0] flex justify-center items-center hover:bg-gray-400 "><i class="fab fa-telegram "></i></div>
+        <div class="items rounded-xl duration-150 overflow-hidden cursor-pointer  bg-[#FFC3A0] flex justify-center items-center hover:bg-gray-400 "><i class="fab fa-youtube "></i></div>
+        <div class="items rounded-xl duration-150 overflow-hidden cursor-pointer  bg-[#FFC3A0] flex justify-center items-center hover:bg-gray-400 "><i class="fab fa-youtube "></i></div>
+        <div class="items rounded-xl duration-150 overflow-hidden cursor-pointer  bg-[#FFC3A0] flex justify-center items-center hover:bg-gray-400 "><i class="fab fa-whatsapp "></i></div>
+        <div class="items rounded-xl duration-150 overflow-hidden cursor-pointer  bg-[#FFC3A0] flex justify-center items-center hover:bg-gray-400 "><i class="fab fa-whatsapp "></i></div>
+        <div class="items rounded-xl duration-150 overflow-hidden cursor-pointer  bg-[#FFC3A0] flex justify-center items-center hover:bg-gray-400 "><i class="fab fa-viber "></i></div>
+        <div class="items rounded-xl duration-150 overflow-hidden cursor-pointer  bg-[#FFC3A0] flex justify-center items-center hover:bg-gray-400 "><i class="fab fa-viber "></i></div>
+        <div class="items rounded-xl duration-150 overflow-hidden cursor-pointer  bg-[#FFC3A0] flex justify-center items-center hover:bg-gray-400 "><i class="fab fa-discord "></i></div>
+        <div class="items rounded-xl duration-150 overflow-hidden cursor-pointer  bg-[#FFC3A0] flex justify-center items-center hover:bg-gray-400"><i class="fab fa-discord "></i></div>
     </div>
     
 </body>
