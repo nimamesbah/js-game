@@ -1,12 +1,19 @@
 const items = [...document.querySelectorAll(".items")];
-const score = document.querySelector(".top-11");
-const attempt = document.querySelector(".top-20");
+const iTags =[...document.querySelectorAll(".items > i")]
+const score = document.querySelector("#score");
+const attempt = document.querySelector("#attempt");
 const root = document.getElementById("root");
+const wins = document.getElementById("totalWin")
+const lose = document.getElementById("totalLose")
 
 
 let arr = []
 let arrCorrect=[]
 let count =0
+let totalWin = JSON.parse(localStorage.getItem("wins")) || 0
+let totalLose = JSON.parse(localStorage.getItem("lose")) || 0
+wins.innerHTML= `total wins: ${totalWin}`
+lose.innerHTML= `total loses: ${totalLose}`
 
 console.log(arr)
 // for(let i = 0; i < items.length ; i++){
@@ -22,7 +29,11 @@ console.log(arr)
     
 // }
 function itemClick(evt){
-    console.log(evt);
+    console.log("nigger",evt);
+    console.log("nigglet",evt.target.querySelector("i"));
+    evt.target.querySelector("i").classList.remove("scale-150")
+    evt.target.classList.add("scale-125")
+    setTimeout(()=> evt.target.classList.remove("scale-125"),40)
     
     
     // debugger
@@ -35,9 +46,10 @@ function itemClick(evt){
         evt.target.classList.remove("hide")
         arr.push(evt.target);
         if(arr[0].innerHTML===arr[1].innerHTML){
-            evt.target.classList.remove("hide")
-            evt.target.classList.add("disabled","bg-blue-300")
-            arr[0].classList.add("bg-blue-300")
+            evt.target.classList.remove("hide","bg-[#FFC3A0]")
+            evt.target.classList.add("disabled","bg-[#00CED1]")
+            arr[0].classList.remove("bg-[#FFC3A0]")
+            arr[0].classList.add("bg-[#00CED1]")
             arr.push(evt.target);
             arrCorrect.push(arr[0],arr[1])
             arr.length=0
@@ -51,6 +63,7 @@ function itemClick(evt){
             
             // debugger
             setTimeout(function(){
+                evt.target.querySelector("i").classList.add("scale-150")
                 arr[0].classList.add("hide");
                 arr[1].classList.add("hide");
                 
@@ -72,15 +85,23 @@ function itemClick(evt){
     
     if(arrCorrect.length===16){
     setTimeout(()=>alert("you win"),50)
+    totalWin++
+    wins.innerHTML= `total wins: ${totalWin}`
+    localStorage.setItem("wins",JSON.stringify(totalWin))
+
     for (const item of arrCorrect) {
-        item.classList.add("bg-green-300")        
+        item.style="background-color:rgb(100, 255, 100);"      
     }
     }
      if(count===3){
          setTimeout(()=>alert("you lose. press F5"),50)
+         totalLose++
+         lose.innerHTML= `total loses: ${totalLose}`
+         localStorage.setItem("lose",JSON.stringify(totalLose))
+
         for (const item of items) {
             item.removeEventListener("click",itemClick)
-            item.classList.add("bg-red-500")
+            item.style="background-color:rgb(255, 90, 90);"
             
             
             
@@ -120,12 +141,16 @@ function startFreeze(){
         item.classList.add("disabled")
         
     }
+    
 }
 startFreeze()
 function endStartFreeze(){
     for (const item of items) {
         item.classList.remove("disabled")
         
+    }
+    for (const iTag of iTags) {
+        iTag.classList.add("scale-150")
     }
 }
 setTimeout(endStartFreeze,3000)

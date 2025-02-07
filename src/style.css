@@ -13,3 +13,9 @@
     pointer-events: none;
 
 }
+body{
+    background-color: #4682B4;
+}
+.big{
+    scale: 1.3;
+}
