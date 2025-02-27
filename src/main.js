@@ -92,7 +92,7 @@ function itemClick(evt){
     localStorage.setItem("wins",JSON.stringify(totalWin))
     modal.classList.remove("hidden")
     setTimeout(()=> {
-        modal.classList.add("z-10","blur-sm","bg-slate-100","opacity-30")
+        modal.classList.add("z-10","blur-xs","bg-slate-100","opacity-30")
         modalText.classList.add("opacity-100","bg-blue-400")
         modalText.innerHTML="you win!"
         
@@ -109,7 +109,7 @@ function itemClick(evt){
          localStorage.setItem("lose",JSON.stringify(totalLose))
          modal.classList.remove("hidden")
          setTimeout(()=> {
-            modal.classList.add("z-10","blur-sm","bg-slate-100","opacity-30")
+            modal.classList.add("z-10","blur-xs","bg-slate-100","opacity-30")
             modalText.classList.add("opacity-100","bg-red-400")
             modalText.innerHTML="you lose!"
             

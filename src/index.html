@@ -10,12 +10,12 @@
     <script src="./main.js" defer></script>
 
 </head>
-<body class="overflow-hidden" >
-    <div id="modalText" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 duration-700 opacity-0  py-3 px-5 rounded-md z-50 w-max"></div>
+<body class="overflow-x-hidden-hidden xl:block flex flex-col-reverse items-center gap-8" >
+    <div id="modalText" class="absolute top-1/2 left-1/2 -translate-x-1/2 sm:-translate-y-1/2 translate-y-[-304px] duration-700 opacity-0  py-3 px-5 rounded-md z-50  w-max"></div>
     <div onclick="modalHandle()" id="modal" class="absolute  hidden duration-700 left-0 top-0  w-full h-screen ">
     </div>
-    <div id="stats" class="flex mt-8 flex-col gap-4 rounded-lg ml-5 py-3 px-4 bg-[#FFC3A0] w-max absolute left-0 top-0 h-96">
-        <pre class="text-xl">if you choose incorrect
+    <div id="stats" class="flex xl:mt-8 sm:items-center max-small_mobile:!w-[100%]  flex-col gap-4 rounded-lg xl:ml-5 xl:w-max py-3 px-4 bg-[#FFC3A0] sm:w-[80%] xl:absolute left-0 top-0 h-96">
+        <pre class="text-xl w-fit">if you choose incorrect
 3 times you lose</pre>
         <h1 id="score" class=" text-4xl text-red-500">your score:</h1>
         <h1 id="attempt" class=" text-4xl text-blue-500">attempt:</h1>
@@ -30,7 +30,7 @@
     
 
 
-    <div id="root" class="grid grid-cols-4 max-w-xl mx-auto mt-8 gap-1">
+    <div id="root" class="grid grid-cols-4 w-full sm:max-w-xl mx-auto sm:px-0 px-3  mt-8 gap-1">
         <div class="items rounded-xl duration-150 overflow-hidden  cursor-pointer bg-[#FFC3A0] flex justify-center items-center hover:bg-gray-400 "><i class="fab fa-twitter "></i></div>
         <div class="items rounded-xl duration-150 overflow-hidden cursor-pointer  bg-[#FFC3A0] flex justify-center items-center hover:bg-gray-400 "><i class="fab fa-twitter "></i></div>
         <div class="items rounded-xl duration-150 overflow-hidden cursor-pointer  bg-[#FFC3A0] flex justify-center items-center hover:bg-gray-400 "><i class="fab fa-facebook "></i></div>
