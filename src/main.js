@@ -117,7 +117,7 @@ function itemClick(evt){
 
         for (const item of items) {
             item.removeEventListener("click",itemClick)
-            item.style="background-color:rgb(255, 90, 90);"
+            item.style="background-color:#E97451;"
             
             
             
